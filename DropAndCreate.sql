@@ -76,6 +76,7 @@ CREATE TABLE genre (
 CREATE TABLE customer (
 	customer_id int PRIMARY KEY,
 	name varchar(200) NOT NULL,
+    dob date not null,
 	address varchar(200),
 	phone varchar(15) NOT NULL,
 	email varchar(200)
@@ -124,6 +125,4 @@ CREATE TABLE order_detail (
 -- 	FOREIGN KEY (book_id) REFERENCES book(book_id),
 -- 	FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 -- );
-
-
 
