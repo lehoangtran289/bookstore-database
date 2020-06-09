@@ -34,8 +34,7 @@ CREATE TABLE book (
 CREATE TABLE publisher (
 	publisher_id int PRIMARY KEY,
 	name nvarchar(200) NOT NULL,
-	address nvarchar(200),
-	phone varchar(15) NOT NULL
+	address nvarchar(200)
 );
 
 CREATE TABLE author (
