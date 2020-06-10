@@ -405,7 +405,7 @@ insert into orders(order_id, customer_id, staff_id, order_date, total_bill) valu
 insert into orders(order_id, customer_id, staff_id, order_date, total_bill) values (97, 39, 5, '2020/03/17', 0);
 insert into orders(order_id, customer_id, staff_id, order_date, total_bill) values (98, 19, 5, '2019/01/29', 0);
 insert into orders(order_id, customer_id, staff_id, order_date, total_bill) values (99, 21, 3, '2019/09/23', 0);
-insert into orders(order_id, customer_id, staff_id, order_date, total_bill) values (100, 15, 3, '2018/12/28', 0); orders
+insert into orders(order_id, customer_id, staff_id, order_date, total_bill) values (100, 15, 3, '2018/12/28', 0); 
 
 -- INSERT ORDER DETAILS
 insert into order_detail (book_id, order_id, quantity) values (46, 1, 1);
@@ -559,7 +559,6 @@ insert into order_detail (book_id, order_id, quantity) values (6, 79, 3);
 insert into order_detail (book_id, order_id, quantity) values (29, 83, 2);
 insert into order_detail (book_id, order_id, quantity) values (51, 36, 2);
 insert into order_detail (book_id, order_id, quantity) values (1, 53, 2);
-insert into order_detail (book_id, order_id, quantity) values (54, 5, 3);
 insert into order_detail (book_id, order_id, quantity) values (10, 48, 2);
 insert into order_detail (book_id, order_id, quantity) values (7, 44, 3);
 insert into order_detail (book_id, order_id, quantity) values (35, 89, 1);
@@ -569,7 +568,6 @@ insert into order_detail (book_id, order_id, quantity) values (33, 78, 2);
 insert into order_detail (book_id, order_id, quantity) values (32, 15, 1);
 insert into order_detail (book_id, order_id, quantity) values (33, 19, 1);
 insert into order_detail (book_id, order_id, quantity) values (15, 11, 1);
-insert into order_detail (book_id, order_id, quantity) values (30, 35, 3);
 insert into order_detail (book_id, order_id, quantity) values (49, 84, 3);
 insert into order_detail (book_id, order_id, quantity) values (11, 63, 1);
 insert into order_detail (book_id, order_id, quantity) values (1, 66, 2);
@@ -608,5 +606,8 @@ insert into order_detail (book_id, order_id, quantity) values (6, 50, 3);
 insert into order_detail (book_id, order_id, quantity) values (50, 34, 1);
 insert into order_detail (book_id, order_id, quantity) values (21, 35, 3);
 insert into order_detail (book_id, order_id, quantity) values (21, 42, 2);
+insert into order_detail (book_id, order_id, quantity) values (21, 43, 5);
+insert into order_detail (book_id, order_id, quantity) values (41, 32, 10);
+insert into order_detail (book_id, order_id, quantity) values (41, 35, 9);
 
 

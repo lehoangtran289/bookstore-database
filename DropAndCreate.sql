@@ -6,8 +6,8 @@ USE bookstoredb;
 
 -- Clear db
 
-DROP TABLE IF EXISTS publisher;
 DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS publisher;
 DROP TABLE IF EXISTS publish_detail;
 DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS author_detail;
