@@ -6,8 +6,8 @@ USE bookstoredb;
 
 -- Clear db
 
-DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS publisher;
+DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS publish_detail;
 DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS author_detail;
@@ -17,8 +17,8 @@ DROP TABLE IF EXISTS staff;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS order_detail;
 
-DROP VIEW IF EXISTS books_detail;
-DROP VIEW IF EXISTS books_ranking;
+DROP TRIGGER IF EXISTS update_book_quantity;
+DROP TRIGGER IF EXISTS order_total_bill;
 
 -- Create tables
 
@@ -98,5 +98,21 @@ CREATE TABLE order_detail (
 );
 
 -- Create triger
+-- Update the number of book in table book when books are bought
+CREATE TRIGGER update_book_quantity BEFORE INSERT ON order_detail
+FOR EACH ROW 
+	UPDATE book 
+	SET inventory_qty = inventory_qty - NEW.quantity
+	WHERE book_id = NEW.book_id;
 
 
+-- Update table orders to get the total_bill of an order when books are added into order
+CREATE TRIGGER order_total_bill BEFORE INSERT ON order_detail
+FOR EACH ROW
+	UPDATE orders
+	SET total_bill = total_bill + (
+		SELECT (price * NEW.quantity)
+		FROM book
+		WHERE book_id = NEW.book_id
+	)
+	WHERE order_id = NEW.order_id;
