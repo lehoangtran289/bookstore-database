@@ -64,11 +64,71 @@ insert into book values(55, 'Refactoring: Improving the Design of Existing Code'
 
 
 ----------- INSERT genre --------------
+INSERT INTO genre (book_id,genre) VALUES (1, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (1, 'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (2, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (2, 'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (3, 'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (4, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (4, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (4, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (5, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (5, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (5, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (6, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (6, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (6, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (7, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (7, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (7, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (8, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (8, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (8, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (9, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (9, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (9, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (10, 'Action');
+INSERT INTO genre (book_id,genre) VALUES (10, 'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (10, 'Classics');
+INSERT INTO genre (book_id,genre) VALUES (11,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (11,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (11,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (12,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (12,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (12,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (13,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (13,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (13,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (14,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (14,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (14,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (15,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (15,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (15,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (16,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (16,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (16,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (17,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (17,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (17,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (18,'Mystery');
+INSERT INTO genre (book_id,genre) VALUES (18,'Fantasy');
+INSERT INTO genre (book_id,genre) VALUES (18,'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (19, 'Comic');
+INSERT INTO genre (book_id,genre) VALUES (20, 'Comic');
+INSERT INTO genre (book_id,genre) VALUES (20, 'Fantasy');
 INSERT INTO genre VALUES (21, 'History'), (22, 'History'), (23, 'History'), (24, 'History');
 INSERT INTO genre VALUES (25, 'Horror'), (26, 'Horror'), (27, 'Horror'), (28, 'Horror');
 INSERT INTO genre VALUES (29, 'Romance'), (30, 'Romance'), (31, 'Romance'), (32, 'Romance');
 INSERT INTO genre VALUES (33, 'Biographic'), (34, 'Biographic'), (35, 'Biographic'), (36, 'Biographic');
 INSERT INTO genre VALUES (37, 'Essay'), (38, 'Essay'), (39, 'Essay'), (40, 'Essay');
+INSERT INTO genre VALUES (41, 'Poetry'), (42, 'Poetry'), (43, 'Poetry');
+INSERT INTO genre VALUES (44, 'Self-help'), (45, 'Self-help'), (46, 'Self-help');
+INSERT INTO genre VALUES (47, 'Business'), (48, 'Business'), (49, 'Business');
+INSERT INTO genre VALUES (50, 'Adventure'), (51, 'Adventure'), (52, 'Adventure');
+INSERT INTO genre VALUES (53, 'Technical'), (54, 'Technical'), (55, 'Technical');
+
+
 
 ----------- INSERT author --------------
 INSERT INTO author (author_id,name,country) VALUES (1, 'Dan Brown', 'USA');
