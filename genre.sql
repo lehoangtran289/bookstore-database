@@ -42,4 +42,3 @@ insert into genre values(41, 14);
 insert into genre values(42, 14);
 insert into genre values(43, 15);
 insert into genre values(44, 15);
-insert into genre values(45, 15);

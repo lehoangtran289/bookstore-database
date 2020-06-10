@@ -21,6 +21,11 @@ DROP VIEW IF EXISTS books_detail;
 DROP VIEW IF EXISTS books_ranking;
 
 -- Create tables
+CREATE TABLE publisher (
+	publisher_id int PRIMARY KEY,
+	name nvarchar(200) NOT NULL,
+	address nvarchar(200)
+);
 
 CREATE TABLE book (
 	book_id int PRIMARY KEY,
@@ -29,12 +34,6 @@ CREATE TABLE book (
 	inventory_qty int NOT NULL CHECK (inventory_qty >= 0),
 	publisher_id int NOT NULL,
 	FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id)
-);
-
-CREATE TABLE publisher (
-	publisher_id int PRIMARY KEY,
-	name nvarchar(200) NOT NULL,
-	address nvarchar(200)
 );
 
 CREATE TABLE author (
