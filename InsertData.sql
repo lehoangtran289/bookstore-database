@@ -1,69 +1,78 @@
------------ INSERT publisher --------------
-insert into publisher values('1', N'NXB Trẻ', N'161B Lý Chinh Thắng, TP Hồ Chí Minh');
-insert into publisher values('2', N'Giáo Dục', N'81 Trần Hưng Đạo, Hà Nội');
-insert into publisher values('3', N'Trí Thức', N'45 Nguyễn Du, Hà Nội');
-insert into publisher values('4', N'Phụ Nữ', N'39 Hàng Chuối, Hà Nội');
-insert into publisher values('5', N'Kim Đồng', N'55 Quang Trung, Hà Nội');
-insert into publisher values('6', N'Lao Động', N'175 Giảng Võ, Hà Nội');
-insert into publisher values('7', N'Mỹ Thuật', N'44B Hàm Long, Hà Nội');
-insert into publisher values('8', N'NXB Hà Nội', N'4 Tống Duy Tân, Hà Nội');
-insert into publisher values('9', N'NXB TP Hồ Chí Minh', N'62 Nguyễn Thị Minh Khai, TP Hồ Chí Minh');
-insert into publisher values('10', N'Thanh Niên', N'62 Bà Triệu, Hà Nội');
-insert into publisher values('11', N'Thế Giới', N'46 Trần Hưng Đạo, Hà Nội');
-insert into publisher values('12', N'Văn Học', N'18 Nguyễn Trường Tộ, Hà Nội');
-insert into publisher values('13', N'Hội Nhà Văn', N'65 Nguyễn Du, Hà Nội');
-insert into publisher values('14', N'Tư Pháp', N'35 Trần Quốc Toản, Hà Nội');
-insert into publisher values('15', N'Giao Thông Vận Tải', N'80B Trần Hưng Đạo, Hà Nội');
+-- INSERT publisher --------------
+insert into publisher (publisher_id,name,address) values('1', N'NXB Trẻ', N'161B Lý Chinh Thắng, TP Hồ Chí Minh');
+insert into publisher (publisher_id,name,address) values('2', N'Giáo Dục', N'81 Trần Hưng Đạo, Hà Nội');
+insert into publisher (publisher_id,name,address) values('3', N'Trí Thức', N'45 Nguyễn Du, Hà Nội');
+insert into publisher (publisher_id,name,address) values('4', N'Phụ Nữ', N'39 Hàng Chuối, Hà Nội');
+insert into publisher (publisher_id,name,address) values('5', N'Kim Đồng', N'55 Quang Trung, Hà Nội');
+insert into publisher (publisher_id,name,address) values('6', N'Lao Động', N'175 Giảng Võ, Hà Nội');
+insert into publisher (publisher_id,name,address) values('7', N'Mỹ Thuật', N'44B Hàm Long, Hà Nội');
+insert into publisher (publisher_id,name,address) values('8', N'NXB Hà Nội', N'4 Tống Duy Tân, Hà Nội');
+insert into publisher (publisher_id,name,address) values('9', N'NXB TP Hồ Chí Minh', N'62 Nguyễn Thị Minh Khai, TP Hồ Chí Minh');
+insert into publisher (publisher_id,name,address) values('10', N'Thanh Niên', N'62 Bà Triệu, Hà Nội');
+insert into publisher (publisher_id,name,address) values('11', N'Thế Giới', N'46 Trần Hưng Đạo, Hà Nội');
+insert into publisher (publisher_id,name,address) values('12', N'Văn Học', N'18 Nguyễn Trường Tộ, Hà Nội');
+insert into publisher (publisher_id,name,address) values('13', N'Hội Nhà Văn', N'65 Nguyễn Du, Hà Nội');
+insert into publisher (publisher_id,name,address) values('14', N'Tư Pháp', N'35 Trần Quốc Toản, Hà Nội');
+insert into publisher (publisher_id,name,address) values('15', N'Giao Thông Vận Tải', N'80B Trần Hưng Đạo, Hà Nội');
 
------------ INSERT book --------------
--- book_id: 21->40
--- History --
-INSERT INTO book VALUES (21, 'The Silk Roads', 361000, 15, 1); -- Peter Frankopan
-INSERT INTO book VALUES (22, 'Sapiens: A Brief History of Humankind', 122000, 23, 1); -- Yuval Noah Harari
-INSERT INTO book VALUES (23, 'Homo Deus', 129796, 32, 2); -- Yuval Noah Harari
-INSERT INTO book VALUES (24, 'Dai Viet Su Ky Toan Thu', 119900, 56, 3); -- Le Van Huu & Ngo Si Lien & Phan Phu Tien
--- Horror -- 
-INSERT INTO book VALUES (25, 'Another', 111000, 65, 4); -- Yukito Ayatsuji
-INSERT INTO book VALUES (26, 'Me Lo Quan', 68400, 99, 5); -- Yukito Ayatsuji
-INSERT INTO book VALUES (27, 'Thuy Xa Quan', 56000, 100, 5); -- Yukito Ayatsuji
-INSERT INTO book VALUES (28, 'Gia Thuyet Thu 7', 70000, 27, 6); -- Paul Halter
--- Romance -- 
-INSERT INTO book VALUES (29, 'Gone With The Wind', 170000, 40, 7); -- Margaret Mitchell
-INSERT INTO book VALUES (30, 'The Fault In Our Stars', 130800, 39, 8); -- John Green
-INSERT INTO book VALUES (31, 'Camille', 36000, 120, 9); -- Alexandre Dumas
-INSERT INTO book VALUES (32, 'Norwegian Wood', 86164, 70, 10); -- Haruki Murakami
--- Biographic -- 
-INSERT INTO book VALUES (33, 'Bill Gates', 145865, 85, 11); -- James Wallace
-INSERT INTO book VALUES (34, 'Eistein: The Life and Universe', 265000, 111, 12); -- Walter Isaacson
-INSERT INTO book VALUES (35, 'Dai Tuong Vo Nguyen Giap', 157500, 137, 13); -- Tran Hong
-INSERT INTO book VALUES (36, 'Jackie Kennedy', 97000, 92, 14); -- Maud Guillaumin
--- Essay -- 
-INSERT INTO book VALUES (37, 'IELTS Handbook', 94000, 205, 15); -- Kien Tran
-INSERT INTO book VALUES (38, 'Mindmap English Grammar', 132900, 170, 1); -- Do Nhung
-INSERT INTO book VALUES (39, 'Ngu Phap Tieng Anh', 58000, 310, 2); -- Mai Lan Huong
-INSERT INTO book VALUES (40, 'English Grammar In Use', 95900, 50, 3); -- Raymond Murphy
+-- INSERT book --------------
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (1, 'Inferno', 142000, 204, 1) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (2, 'Deception Point', 148000, 198, 2) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (3, 'Sherlock Holmes - Part 1', 82000, 150, 3) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (4, 'Sherlock Holmes - Part 2', 83000, 150, 4) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (5, 'Sherlock Holmes - Part 3', 82000, 150, 5) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (6, 'A Game Of Thrones', 199000, 200, 6) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (7, 'Fire & Blood', 411000, 200, 7) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (8, 'A Song of Ice and Fire: A Knight Of The Seven Kingdoms', 141000, 200, 8) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (9, 'A Storm Of Swords 2: Blood And Gold', 339000, 200, 9) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (10, 'A Feast For Crows', 126000, 200, 10) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (11, 'Wordsworth Editions: The Little Prince', 74000, 100, 11) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (12, 'Harry Potter Part 1: Harry Potter And The Philosopher Stone', 197000, 180, 12) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (13, 'Harry Potter Part 2: Harry Potter And The Chamber Of Secrets', 160000, 250, 13) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (14, 'Harry Potter Part 3: Harry Potter And The Prisoner Of Azkaban', 130000, 250, 14) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (15, 'Harry Potter Part 4: Harry Potter And The Goblet Of Fire', 130000, 250, 1) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (16, 'Harry Potter Part 5: Harry Potter And The Order Of The Phoenix', 131000, 220, 3) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (17, 'Harry Potter Part 6: Harry Potter And The Half-Blood Prince', 130000, 250, 5) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (18, 'Harry Potter Part 7: Harry Potter And The Deathly Hallows', 152000, 250, 7) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (19, 'One Piece Color Walk Art Book', 230000, 250, 9) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (20, 'Charlie and the Chocolate Factory', 188000, 250, 11) ;
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (21, 'The Silk Roads', 361000, 15, 1); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (22, 'Sapiens: A Brief History of Humankind', 122000, 23, 1); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (23, 'Homo Deus', 129796, 32, 2); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (24, 'Dai Viet Su Ky Toan Thu', 119900, 56, 3);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (25, 'Another', 111000, 65, 4); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (26, 'Me Lo Quan', 68400, 99, 5); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (27, 'Thuy Xa Quan', 56000, 100, 5); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (28, 'Gia Thuyet Thu 7', 70000, 27, 6); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (29, 'Gone With The Wind', 170000, 40, 7); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (30, 'The Fault In Our Stars', 130800, 39, 8); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (31, 'Camille', 36000, 120, 9); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (32, 'Norwegian Wood', 86164, 70, 10); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (33, 'Bill Gates', 145865, 85, 11); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (34, 'Eistein: The Life and Universe', 265000, 111, 12); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (35, 'Dai Tuong Vo Nguyen Giap', 157500, 137, 13); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (36, 'Jackie Kennedy', 97000, 92, 14); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (37, 'IELTS Handbook', 94000, 205, 15); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (38, 'Mindmap English Grammar', 132900, 170, 1); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (39, 'Ngu Phap Tieng Anh', 58000, 310, 2); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (40, 'English Grammar In Use', 95900, 50, 3); 
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (41, 'Clap When You Land', 280000, 30, 4);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (42, 'Lets See Them Poems', 25000, 29, 6);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (43, 'Radical Wordsworth: The Poet Who Changed the World', 450000, 30, 10 );
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (44, 'What Makes a Marriage Last', 330000, 30, 7);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (45, 'Why Bother: Discover the Desire for What’s Next',  235000, 30, 8);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (46, 'Fortitude: American Resilience in the Era of Outrage', 343000, 30, 11);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (47, 'Make Your Bed: Little Things That Can Change Your Life...And Maybe the World', 275000, 30, 11);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (48, 'The Fifth Risk: Undoing Democracy', 185000, 30, 14);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (49, 'Talking to Strangers: What We Should Know About the People We Don’t Know', 355000, 30, 1);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (50, 'The Princess Bride', 75000, 30, 12);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (51, 'Ready Player One', 245000, 30, 2);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (52, 'The Martian', 190000, 30, 3);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (53, 'Clean Code: A Handbook of Agile Software Craftsmanship', 950000, 30, 1);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (54, 'Code Complete', 515000, 30, 5);
+INSERT INTO book (book_id,title,price,inventory_qty,publisher_id) VALUES (55, 'Refactoring: Improving the Design of Existing Code', 825000, 30, 9);
 
--- INSERT BOOK ----
--- 41 -> 55 
-insert into book values(41, 'Clap When You Land', 30, 280000, 4);
-insert into book values(42, 'Lets See Them Poems', 29, 25000, 6);
-insert into book values(43, 'Radical Wordsworth: The Poet Who Changed the World', 30, 450000, 10 );
-insert into book values(44, 'What Makes a Marriage Last', 30, 330000, 7);
-insert into book values(45, 'Why Bother: Discover the Desire for What’s Next', 30, 235000, 8);
-insert into book values(46, 'Fortitude: American Resilience in the Era of Outrage', 30, 343000, 11);
-insert into book values(47, 'Make Your Bed: Little Things That Can Change Your Life...And Maybe the World', 30, 275000, 11);
-insert into book values(48, 'The Fifth Risk: Undoing Democracy', 30, 185000, 14);
-insert into book values(49, 'Talking to Strangers: What We Should Know About the People We Don’t Know', 30, 355000, 1);
-insert into book values(50, 'The Princess Bride', 30, 75000, 12);
-insert into book values(51, 'Ready Player One', 30, 245000, 2);
-insert into book values(52, 'The Martian', 30, 190000, 3);
-insert into book values(53, 'Clean Code: A Handbook of Agile Software Craftsmanship', 30, 950000, 1);
-insert into book values(54, 'Code Complete', 30, 515000, 5);
-insert into book values(55, 'Refactoring: Improving the Design of Existing Code', 30, 825000, 9);
-
-
-
------------ INSERT genre --------------
+-- INSERT genre --------------
 INSERT INTO genre (book_id,genre) VALUES (1, 'Action');
 INSERT INTO genre (book_id,genre) VALUES (1, 'Adventure');
 INSERT INTO genre (book_id,genre) VALUES (2, 'Action');
@@ -117,27 +126,25 @@ INSERT INTO genre (book_id,genre) VALUES (18,'Adventure');
 INSERT INTO genre (book_id,genre) VALUES (19, 'Comic');
 INSERT INTO genre (book_id,genre) VALUES (20, 'Comic');
 INSERT INTO genre (book_id,genre) VALUES (20, 'Fantasy');
-INSERT INTO genre VALUES (21, 'History'), (22, 'History'), (23, 'History'), (24, 'History');
-INSERT INTO genre VALUES (25, 'Horror'), (26, 'Horror'), (27, 'Horror'), (28, 'Horror');
-INSERT INTO genre VALUES (29, 'Romance'), (30, 'Romance'), (31, 'Romance'), (32, 'Romance');
-INSERT INTO genre VALUES (33, 'Biographic'), (34, 'Biographic'), (35, 'Biographic'), (36, 'Biographic');
-INSERT INTO genre VALUES (37, 'Essay'), (38, 'Essay'), (39, 'Essay'), (40, 'Essay');
-INSERT INTO genre VALUES (41, 'Poetry'), (42, 'Poetry'), (43, 'Poetry');
-INSERT INTO genre VALUES (44, 'Self-help'), (45, 'Self-help'), (46, 'Self-help');
-INSERT INTO genre VALUES (47, 'Business'), (48, 'Business'), (49, 'Business');
-INSERT INTO genre VALUES (50, 'Adventure'), (51, 'Adventure'), (52, 'Adventure');
-INSERT INTO genre VALUES (53, 'Technical'), (54, 'Technical'), (55, 'Technical');
+INSERT INTO genre (book_id,genre) VALUES (21, 'History'), (22, 'History'), (23, 'History'), (24, 'History');
+INSERT INTO genre (book_id,genre) VALUES (25, 'Horror'), (26, 'Horror'), (27, 'Horror'), (28, 'Horror');
+INSERT INTO genre (book_id,genre) VALUES (29, 'Romance'), (30, 'Romance'), (31, 'Romance'), (32, 'Romance');
+INSERT INTO genre (book_id,genre) VALUES (33, 'Biographic'), (34, 'Biographic'), (35, 'Biographic'), (36, 'Biographic');
+INSERT INTO genre (book_id,genre) VALUES (37, 'Essay'), (38, 'Essay'), (39, 'Essay'), (40, 'Essay');
+INSERT INTO genre (book_id,genre) VALUES (41, 'Poetry'), (42, 'Poetry'), (43, 'Poetry');
+INSERT INTO genre (book_id,genre) VALUES (44, 'Self-help'), (45, 'Self-help'), (46, 'Self-help');
+INSERT INTO genre (book_id,genre) VALUES (47, 'Business'), (48, 'Business'), (49, 'Business');
+INSERT INTO genre (book_id,genre) VALUES (50, 'Adventure'), (51, 'Adventure'), (52, 'Adventure');
+INSERT INTO genre (book_id,genre) VALUES (53, 'Technical'), (54, 'Technical'), (55, 'Technical');
 
-
-
------------ INSERT author --------------
-INSERT INTO author (author_id,name,country) VALUES (1, 'Dan Brown', 'USA');
-INSERT INTO author (author_id,name,country) VALUES (2, 'Sir Arthur Conan Doyle', 'England');
-INSERT INTO author (author_id,name,country) VALUES (3, 'George R. R. Martin', 'USA');
-INSERT INTO author (author_id,name,country) VALUES (4, 'Antoine De Saint-Exupery', 'France');
-INSERT INTO author (author_id,name,country) VALUES (5, 'J. K. Rowling', 'England');
-INSERT INTO author (author_id,name,country) VALUES (6, 'Eiichiro Oda', 'Japan');
-INSERT INTO author (author_id,name,country) VALUES (7, 'Roald Dahl', 'England');
+-- INSERT author --------------
+INSERT INTO author VALUES (1, 'Dan Brown', 'USA');
+INSERT INTO author VALUES (2, 'Sir Arthur Conan Doyle', 'England');
+INSERT INTO author VALUES (3, 'George R. R. Martin', 'USA');
+INSERT INTO author VALUES (4, 'Antoine De Saint-Exupery', 'France');
+INSERT INTO author VALUES (5, 'J. K. Rowling', 'England');
+INSERT INTO author VALUES (6, 'Eiichiro Oda', 'Japan');
+INSERT INTO author VALUES (7, 'Roald Dahl', 'England');
 INSERT INTO author VALUES (8, 'Peter Frankopan', 'England');
 INSERT INTO author VALUES (9, 'Raymond Murphy', 'England');
 INSERT INTO author VALUES (10, 'Yuval Noah Harari', 'Israel');
@@ -157,25 +164,23 @@ INSERT INTO author VALUES (23, 'Margaret Mitchell', 'USA');
 INSERT INTO author VALUES (24, 'John Green', 'USA');
 INSERT INTO author VALUES (25, 'James Wallace', 'USA');
 INSERT INTO author VALUES (26, 'Walter Isaacson', 'USA');
-insert into author values(27, 'Elizabeth Acevedo', 'USA');
-insert into author values(28, 'Andrew Shaffer', 'USA');
-insert into author values(29, 'Jonathan Bate', 'England');
-insert into author values(30, 'Marlo Thomas', 'USA');
-insert into author values(31, 'Jennifer Louden', 'USA');
-insert into author values(32, 'Dan Crenshaw', 'England');
-insert into author values(33, 'William H. McRaven', 'USA');
-insert into author values(34, 'Michael Lewis', 'USA');
-insert into author values(35, 'Malcolm Gladwell', 'Canada');
-insert into author values(36, 'William Goldman', 'USA');
-insert into author values(37, 'Ernest Cline', 'USA');
-insert into author values(38, 'Andy Weir', 'USA');
-insert into author values(39, 'Robert C. Martin', 'USA');
-insert into author values(40, 'Steve McConnell', 'USA');
-insert into author values(41, 'Martin Fowler', 'England');
+insert into author VALUES (27, 'Elizabeth Acevedo', 'USA');
+insert into author VALUES (28, 'Andrew Shaffer', 'USA');
+insert into author VALUES (29, 'Jonathan Bate', 'England');
+insert into author VALUES (30, 'Marlo Thomas', 'USA');
+insert into author VALUES (31, 'Jennifer Louden', 'USA');
+insert into author VALUES (32, 'Dan Crenshaw', 'England');
+insert into author VALUES (33, 'William H. McRaven', 'USA');
+insert into author VALUES (34, 'Michael Lewis', 'USA');
+insert into author VALUES (35, 'Malcolm Gladwell', 'Canada');
+insert into author VALUES (36, 'William Goldman', 'USA');
+insert into author VALUES (37, 'Ernest Cline', 'USA');
+insert into author VALUES (38, 'Andy Weir', 'USA');
+insert into author VALUES (39, 'Robert C. Martin', 'USA');
+insert into author VALUES (40, 'Steve McConnell', 'USA');
+insert into author VALUES (41, 'Martin Fowler', 'England');
 
-
-
------------ INSERT author_detail --------------
+-- INSERT author_detail --------------
 INSERT INTO author_detail (author_id,book_id) VALUES (1,1);
 INSERT INTO author_detail (author_id,book_id) VALUES (1,2);
 INSERT INTO author_detail (author_id,book_id) VALUES (2,3);
@@ -196,45 +201,45 @@ INSERT INTO author_detail (author_id,book_id) VALUES (5,17);
 INSERT INTO author_detail (author_id,book_id) VALUES (5,18);
 INSERT INTO author_detail (author_id,book_id) VALUES (6,19);
 INSERT INTO author_detail (author_id,book_id) VALUES (7,20);
-INSERT INTO author_detail VALUES (8, 21);
-INSERT INTO author_detail VALUES (10, 22);
-INSERT INTO author_detail VALUES (10, 23);
-INSERT INTO author_detail VALUES (11, 24);
-INSERT INTO author_detail VALUES (12, 24);
-INSERT INTO author_detail VALUES (13, 24);
-INSERT INTO author_detail VALUES (18, 25);
-INSERT INTO author_detail VALUES (18, 26);
-INSERT INTO author_detail VALUES (18, 27);
-INSERT INTO author_detail VALUES (20, 28);
-INSERT INTO author_detail VALUES (23, 29);
-INSERT INTO author_detail VALUES (24, 30);
-INSERT INTO author_detail VALUES (21, 31);
-INSERT INTO author_detail VALUES (19, 32);
-INSERT INTO author_detail VALUES (25, 33);
-INSERT INTO author_detail VALUES (26, 34);
-INSERT INTO author_detail VALUES (17, 35);
-INSERT INTO author_detail VALUES (22, 36);
-INSERT INTO author_detail VALUES (14, 37);
-INSERT INTO author_detail VALUES (15, 38);
-INSERT INTO author_detail VALUES (16, 39);
-INSERT INTO author_detail VALUES (9, 40);
-insert into author_detail values(27, 41);
-insert into author_detail values(28, 42);
-insert into author_detail values(29, 43);
-insert into author_detail values(30, 44);
-insert into author_detail values(31, 45);
-insert into author_detail values(32, 46);
-insert into author_detail values(33, 47);
-insert into author_detail values(34, 48);
-insert into author_detail values(35, 49);
-insert into author_detail values(36, 50);
-insert into author_detail values(37, 51);
-insert into author_detail values(38, 52);
-insert into author_detail values(39, 53);
-insert into author_detail values(40, 54);
-insert into author_detail values(41, 55);
+INSERT INTO author_detail (author_id,book_id) VALUES (8, 21);
+INSERT INTO author_detail (author_id,book_id) VALUES (10, 22);
+INSERT INTO author_detail (author_id,book_id) VALUES (10, 23);
+INSERT INTO author_detail (author_id,book_id) VALUES (11, 24);
+INSERT INTO author_detail (author_id,book_id) VALUES (12, 24);
+INSERT INTO author_detail (author_id,book_id) VALUES (13, 24);
+INSERT INTO author_detail (author_id,book_id) VALUES (18, 25);
+INSERT INTO author_detail (author_id,book_id) VALUES (18, 26);
+INSERT INTO author_detail (author_id,book_id) VALUES (18, 27);
+INSERT INTO author_detail (author_id,book_id) VALUES (20, 28);
+INSERT INTO author_detail (author_id,book_id) VALUES (23, 29);
+INSERT INTO author_detail (author_id,book_id) VALUES (24, 30);
+INSERT INTO author_detail (author_id,book_id) VALUES (21, 31);
+INSERT INTO author_detail (author_id,book_id) VALUES (19, 32);
+INSERT INTO author_detail (author_id,book_id) VALUES (25, 33);
+INSERT INTO author_detail (author_id,book_id) VALUES (26, 34);
+INSERT INTO author_detail (author_id,book_id) VALUES (17, 35);
+INSERT INTO author_detail (author_id,book_id) VALUES (22, 36);
+INSERT INTO author_detail (author_id,book_id) VALUES (14, 37);
+INSERT INTO author_detail (author_id,book_id) VALUES (15, 38);
+INSERT INTO author_detail (author_id,book_id) VALUES (16, 39);
+INSERT INTO author_detail (author_id,book_id) VALUES (9, 40);
+insert into author_detail (author_id,book_id) VALUES (27, 41);
+insert into author_detail (author_id,book_id) VALUES (28, 42);
+insert into author_detail (author_id,book_id) VALUES (29, 43);
+insert into author_detail (author_id,book_id) VALUES (30, 44);
+insert into author_detail (author_id,book_id) VALUES (31, 45);
+insert into author_detail (author_id,book_id) VALUES (32, 46);
+insert into author_detail (author_id,book_id) VALUES (33, 47);
+insert into author_detail (author_id,book_id) VALUES (34, 48);
+insert into author_detail (author_id,book_id) VALUES (35, 49);
+insert into author_detail (author_id,book_id) VALUES (36, 50);
+insert into author_detail (author_id,book_id) VALUES (37, 51);
+insert into author_detail (author_id,book_id) VALUES (38, 52);
+insert into author_detail (author_id,book_id) VALUES (39, 53);
+insert into author_detail (author_id,book_id) VALUES (40, 54);
+insert into author_detail (author_id,book_id) VALUES (41, 55);
 
--- Insert Staff ---
+-- INSERT staff
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (1, 'Kathryne Rosingdall', '2019/05/07', '1996/01/11', '5631 Fallview Way', 'krosingdall0@cmu.edu', 'NGANKyRV', '3403269895', 'manager');
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (2, 'Filip Crimp', '2019/12/08', '1995/03/27', '861 Independence Center', 'fcrimp1@cpanel.net', 'Xb4mljSJ', '8573880116', 'cashier');
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (3, 'Ree Amer', '2020/01/22', '1992/02/05', '47 Hoffman Avenue', 'ramer2@about.com', 'CTuVucmqTz', '5088960232', 'cashier');
@@ -247,3 +252,58 @@ insert into staff (staff_id, name, hire_date, dob, address, email, password, pho
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (10, 'Prisca McGowing', '2020/03/29', '1990/10/22', '2344 Amoth Junction', 'pmcgowing9@livejournal.com', 'qhh8ugLe', '9752365750', 'security');
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (11, 'Roxine Gotobed', '2018/11/15', '1993/11/02', '478 Lunder Point', 'rgotobeda@bloomberg.com', 'uFosKUHm', '2289829494', 'cleaner');
 insert into staff (staff_id, name, hire_date, dob, address, email, password, phone, position) values (12, 'Franz Sand', '2018/07/29', '2000/02/07', '314 Dayton Parkway', 'fsandb@vinaora.com', 'oBLLUA', '6876662560', 'cleaner');
+
+-- INSERT customer
+insert into customer (customer_id, name, address, phone, email) values (1, 'Karlen Pablos', '1375 Sutteridge Hill', '1023242128', 'kpablos0@nymag.com');
+insert into customer (customer_id, name, address, phone, email) values (2, 'Claudette Dowsey', '7645 Bartillon Junction', '5762584614', 'cdowsey1@nydailynews.com');
+insert into customer (customer_id, name, address, phone, email) values (3, 'Loutitia Imesson', '78 Meadow Valley Parkway', '7729442420', 'limesson2@apple.com');
+insert into customer (customer_id, name, address, phone, email) values (4, 'Raquel Jewitt', '91976 Fremont Way', '9738515815', 'rjewitt3@slideshare.net');
+insert into customer (customer_id, name, address, phone, email) values (5, 'Bunny David', '42 Kennedy Crossing', '1981941092', 'bdavid4@examiner.com');
+insert into customer (customer_id, name, address, phone, email) values (6, 'Marven Binstead', '5 Rutledge Point', '9592971517', 'mbinstead5@seattletimes.com');
+insert into customer (customer_id, name, address, phone, email) values (7, 'Patrice Purselowe', '9697 Fieldstone Alley', '8252063263', 'ppurselowe6@go.com');
+insert into customer (customer_id, name, address, phone, email) values (8, 'Chaddie Coronas', '54318 Mitchell Center', '4348164285', 'ccoronas7@linkedin.com');
+insert into customer (customer_id, name, address, phone, email) values (9, 'Michal Duckhouse', '0 Spenser Crossing', '3723826702', 'mduckhouse8@kickstarter.com');
+insert into customer (customer_id, name, address, phone, email) values (10, 'Karylin Hainey', '7 Manley Alley', '3243358747', 'khainey9@sciencedaily.com');
+insert into customer (customer_id, name, address, phone, email) values (11, 'Ash Maidlow', '992 Logan Circle', '3356267919', 'amaidlowa@foxnews.com');
+insert into customer (customer_id, name, address, phone, email) values (12, 'Correna Rodear', '02 Johnson Crossing', '7267715015', 'crodearb@ucsd.edu');
+insert into customer (customer_id, name, address, phone, email) values (13, 'Anatollo Walshe', '0 Rigney Avenue', '1738912219', 'awalshec@sphinn.com');
+insert into customer (customer_id, name, address, phone, email) values (14, 'Way Lamort', '48329 Bellgrove Court', '8602699555', 'wlamortd@ucoz.ru');
+insert into customer (customer_id, name, address, phone, email) values (15, 'Salvatore Farley', '13804 7th Court', '6734578442', 'sfarleye@360.cn');
+insert into customer (customer_id, name, address, phone, email) values (16, 'Valeria Cheley', '7 Gerald Center', '9048761126', 'vcheleyf@exblog.jp');
+insert into customer (customer_id, name, address, phone, email) values (17, 'Garald Goodliff', '41 Stephen Park', '7337692771', 'ggoodliffg@purevolume.com');
+insert into customer (customer_id, name, address, phone, email) values (18, 'Gladys Aime', '758 Hauk Crossing', '7871651309', 'gaimeh@admin.ch');
+insert into customer (customer_id, name, address, phone, email) values (19, 'Ruth Klimowski', '13 Twin Pines Road', '8042533372', 'rklimowskii@zdnet.com');
+insert into customer (customer_id, name, address, phone, email) values (20, 'Nels Pavie', '8 Mccormick Circle', '7835450745', 'npaviej@opera.com');
+insert into customer (customer_id, name, address, phone, email) values (21, 'Darell Whittet', '4706 Hanover Alley', '2812077182', 'dwhittetk@nps.gov');
+insert into customer (customer_id, name, address, phone, email) values (22, 'Jim Feake', '7063 Esch Center', '8926478663', 'jfeakel@nationalgeographic.com');
+insert into customer (customer_id, name, address, phone, email) values (23, 'Happy Skelton', '9653 Schurz Plaza', '9441653169', 'hskeltonm@psu.edu');
+insert into customer (customer_id, name, address, phone, email) values (24, 'Tally Buckler', '052 Morning Street', '7737392017', 'tbucklern@goo.ne.jp');
+insert into customer (customer_id, name, address, phone, email) values (25, 'Davina Grote', '5898 Commercial Pass', '4281801861', 'dgroteo@drupal.org');
+insert into customer (customer_id, name, address, phone, email) values (26, 'Archibold Del Checolo', '33537 Dennis Street', '8831660076', 'adelp@list-manage.com');
+insert into customer (customer_id, name, address, phone, email) values (27, 'Tallou Madle', '26150 La Follette Place', '1665223978', 'tmadleq@mlb.com');
+insert into customer (customer_id, name, address, phone, email) values (28, 'Rozalin Lehrmann', '2 Reinke Junction', '4799138644', 'rlehrmannr@dion.ne.jp');
+insert into customer (customer_id, name, address, phone, email) values (29, 'Goldia Arundel', '07 School Circle', '4794428297', 'garundels@webnode.com');
+insert into customer (customer_id, name, address, phone, email) values (30, 'Floria Syphus', '1 Birchwood Way', '2352231084', 'fsyphust@freewebs.com');
+insert into customer (customer_id, name, address, phone, email) values (31, 'Winn Frantsev', '5 Mallory Avenue', '8576249533', 'wfrantsevu@taobao.com');
+insert into customer (customer_id, name, address, phone, email) values (32, 'Warde Servis', '30 Shoshone Terrace', '8342611595', 'wservisv@fotki.com');
+insert into customer (customer_id, name, address, phone, email) values (33, 'Ardath Reinhard', '908 Buena Vista Alley', '9188836103', 'areinhardw@facebook.com');
+insert into customer (customer_id, name, address, phone, email) values (34, 'Dyna Ruppeli', '8685 Oak Valley Avenue', '9934307595', 'druppelix@un.org');
+insert into customer (customer_id, name, address, phone, email) values (35, 'Archibald Twinning', '3 Katie Terrace', '7509814252', 'atwinningy@apache.org');
+insert into customer (customer_id, name, address, phone, email) values (36, 'Clarine Brokenbrow', '00 Summit Avenue', '4075774380', 'cbrokenbrowz@sciencedaily.com');
+insert into customer (customer_id, name, address, phone, email) values (37, 'Jeniffer Gibling', '218 Delladonna Center', '5674141996', 'jgibling10@ihg.com');
+insert into customer (customer_id, name, address, phone, email) values (38, 'Ricardo Fullagar', '30196 Truax Court', '1026765527', 'rfullagar11@discuz.net');
+insert into customer (customer_id, name, address, phone, email) values (39, 'Elsi Jeary', '8199 Boyd Crossing', '9227270621', 'ejeary12@issuu.com');
+insert into customer (customer_id, name, address, phone, email) values (40, 'Dexter Kirley', '1 Stephen Alley', '2989577223', 'dkirley13@reddit.com');
+insert into customer (customer_id, name, address, phone, email) values (41, 'Susan Jills', '4 Shopko Avenue', '4843028509', 'sjills14@intel.com');
+insert into customer (customer_id, name, address, phone, email) values (42, 'Xylia Cranstone', '19 Washington Hill', '2773505643', 'xcranstone15@blogs.com');
+insert into customer (customer_id, name, address, phone, email) values (43, 'Jasmin Riba', '57 Old Gate Alley', '5757932327', 'jriba16@bbb.org');
+insert into customer (customer_id, name, address, phone, email) values (44, 'Myrtia Orpin', '9045 Jackson Crossing', '4596790365', 'morpin17@gov.uk');
+insert into customer (customer_id, name, address, phone, email) values (45, 'Gratia Grisewood', '6 Anhalt Way', '1028182079', 'ggrisewood18@bloomberg.com');
+insert into customer (customer_id, name, address, phone, email) values (46, 'Claresta Cowitz', '7873 Moulton Parkway', '1938208165', 'ccowitz19@yahoo.com');
+insert into customer (customer_id, name, address, phone, email) values (47, 'Arielle Losano', '5 Blue Bill Park Junction', '9408660294', 'alosano1a@addtoany.com');
+insert into customer (customer_id, name, address, phone, email) values (48, 'Mozes Towlson', '33443 Gulseth Lane', '1186407907', 'mtowlson1b@360.cn');
+insert into customer (customer_id, name, address, phone, email) values (49, 'Robby Weldrake', '19258 8th Street', '6126762406', 'rweldrake1c@nyu.edu');
+insert into customer (customer_id, name, address, phone, email) values (50, 'Manny Reeman', '1 Grim Crossing', '6684271052', 'mreeman1d@webmd.com');
+
+
+

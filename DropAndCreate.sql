@@ -21,6 +21,7 @@ DROP VIEW IF EXISTS books_detail;
 DROP VIEW IF EXISTS books_ranking;
 
 -- Create tables
+
 CREATE TABLE publisher (
 	publisher_id int PRIMARY KEY,
 	name nvarchar(200) NOT NULL,
@@ -96,5 +97,6 @@ CREATE TABLE order_detail (
 	FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
+-- Create triger
 
 
