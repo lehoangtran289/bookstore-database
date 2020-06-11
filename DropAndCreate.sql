@@ -20,6 +20,9 @@ DROP TABLE IF EXISTS order_detail;
 DROP TRIGGER IF EXISTS update_book_quantity;
 DROP TRIGGER IF EXISTS order_total_bill;
 
+DROP FUNCTION IF EXISTS book_count;
+DROP PROCEDURE IF EXISTS book_in_price_range;
+
 -- Create tables
 
 CREATE TABLE publisher (
@@ -117,3 +120,34 @@ FOR EACH ROW
 		WHERE book_id = NEW.book_id
 	)
 	WHERE order_id = NEW.order_id;
+
+-- Create function & Procedure
+-- Function to get the number of books published by 1 publisher
+DELIMITER $$
+
+CREATE FUNCTION book_count(publisherID INT) RETURNS INT
+LANGUAGE SQL
+DETERMINISTIC
+BEGIN
+	DECLARE number_of_book INT;
+	SELECT COUNT(book_id) 
+	INTO number_of_book
+	FROM book
+	WHERE publisher_id = publisherID
+	GROUP BY publisher_id;
+	RETURN number_of_book;
+END $$
+
+DELIMITER ;
+
+-- Procedure retrieve book in a price range
+DELIMITER $$
+CREATE PROCEDURE book_in_price_range(IN low int, IN high int)
+BEGIN
+	SELECT book.*
+    FROM book
+    WHERE price >= low AND price <= HIGH;
+END; $$
+DELIMITER ;
+
+

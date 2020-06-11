@@ -609,5 +609,6 @@ insert into order_detail (book_id, order_id, quantity) values (21, 42, 2);
 insert into order_detail (book_id, order_id, quantity) values (21, 43, 5);
 insert into order_detail (book_id, order_id, quantity) values (41, 32, 10);
 insert into order_detail (book_id, order_id, quantity) values (41, 35, 9);
+INSERT INTO order_detail (book_id, order_id, quantity) VALUES (1, 99, 16);
 
 
