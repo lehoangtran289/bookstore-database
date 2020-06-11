@@ -12,7 +12,7 @@ FROM customer c
 JOIN orders o ON c.customer_id = o.customer_id
 JOIN order_detail od on o.order_id = od.order_id
 JOIN genre g on g.book_id = od.book_id
-WHERE g.genre = 'Technical'
+WHERE g.genre = 'Fantasy'
 GROUP BY c.customer_id
 HAVING COUNT(*) >= 3;
 
