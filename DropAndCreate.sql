@@ -70,6 +70,7 @@ CREATE TABLE staff (
 	staff_id int PRIMARY KEY,
 	name varchar(200) NOT NULL,
 	hire_date date NOT NULL,
+	end_date date,
 	dob date,
 	address varchar(200) NOT NULL,
 	phone varchar(15) NOT NULL,
