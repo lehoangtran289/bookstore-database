@@ -61,9 +61,17 @@ WHERE b.inventory_qty < 3 AND o.order_date >= DATE_SUB(CURDATE(), INTERVAL 180 D
 GROUP BY b.book_id
 HAVING SUM(od.quantity) > 10;
 
---  best seller of each publisher
+--  best seller of 3 best publisher
 SELECT b.title 'book title', p.name 'publisher name', SUM(od.quantity)
-FROM book b, publisher p, order_detail od
+FROM book b, order_detail od, (
+	SELECT publisher.*
+    FROM publisher
+    JOIN book ON publisher.publisher_id = book.publisher_id
+    JOIN order_detail ON order_detail.book_id = book.book_id
+    GROUP BY book.book_id, book.publisher_id
+    ORDER BY SUM(order_detail.quantity) DESC
+    LIMIT 3
+) p
 WHERE b.book_id = od.book_id AND b.publisher_id = p.publisher_id
 GROUP BY b.book_id, b.publisher_id
 HAVING SUM(od.quantity) >= ALL (
