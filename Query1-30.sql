@@ -326,13 +326,15 @@ END $$
 
 DELIMITER ;
  
--- 28. Delete the information of customers who have not bought any book since 2019
-DELETE FROM customer
-WHERE customer_id NOT IN (
-	SELECT DISTINCT(customer_id)
-	FROM orders
-	WHERE YEAR(order_date) >= 2019
-);
+-- 28. Give the name of customers who buy books in only 1 genre
+SELECT c.name 
+FROM customer AS c, orders AS o, order_detail AS od, book AS b, genre AS g
+WHERE c.customer_id = o.customer_id
+AND o.order_id = od.order_id
+AND od.book_id = b.book_id
+AND b.book_id = g.book_id
+GROUP BY c.customer_id
+HAVING COUNT(DISTINCT g.genre) <= 1;
 
 -- 29. Give the name of authors who wrote the least number of books among all British authors
 SELECT a.name AS Authors
