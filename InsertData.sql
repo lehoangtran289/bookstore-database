@@ -22,10 +22,10 @@ INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (4, 'Sherlock Holmes - Part 2', 83000, 150, 4);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (5, 'Sherlock Holmes - Part 3', 82000, 150, 5);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (6, 'A Game Of Thrones', 199000, 200, 6);
-INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (7, 'Fire & Blood', 411000, 200, 7);
-INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (8, 'A Song of Ice and Fire: A Knight Of The Seven Kingdoms', 141000, 200, 8);
-INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (9, 'A Storm Of Swords 2: Blood And Gold', 339000, 200, 9);
-INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (10, 'A Feast For Crows', 126000, 200, 10);
+INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (7, 'Fire & Blood', 411000, 200, 6);
+INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (8, 'A Song of Ice and Fire: A Knight Of The Seven Kingdoms', 141000, 200, 6);
+INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (9, 'A Storm Of Swords 2: Blood And Gold', 339000, 200, 6);
+INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (10, 'A Feast For Crows', 126000, 200, 6);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (11, 'Wordsworth Editions: The Little Prince', 74000, 100, 11);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (12, 'Harry Potter Part 1: Harry Potter And The Philosopher Stone', 197000, 180, 12);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (13, 'Harry Potter Part 2: Harry Potter And The Chamber Of Secrets', 160000, 250, 13);

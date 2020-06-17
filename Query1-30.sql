@@ -218,10 +218,18 @@ AND c.customer_id IN (
 	AND g2.genre = 'Mystery'
 );
 
--- 19. Since Kathryne Rosingdall quited her manager job, Sher Kentwell will be promoted to manager. Update the information of these staffs
-UPDATE staff s1, staff s2 
-SET s1.end_date = now(), s2.`position` = 'manager'
-WHERE s1.name = 'Kathryne Rosingdall' AND s2.name = 'Sher Kentwell';
+-- 19. Retrieve information of the publisher(s) selling all books written by 'George R. R. Martin'
+SELECT p.publisher_id, p.name, p.address
+FROM publisher p, author a, book b, author_detail ad
+WHERE p.publisher_id = b.publisher_id AND b.book_id = ad.book_id AND ad.author_id = a.author_id
+AND a.name = 'George R. R. Martin'
+GROUP BY p.publisher_id
+HAVING count(*) = (
+	SELECT count(*)
+	FROM book b1, author a1, author_detail ad1
+	WHERE b1.book_id = ad1.book_id AND ad1.author_id = a1.author_id
+	AND a1.name = 'George R. R. Martin'
+);
 
 -- 20. During the Covid-19 pandemic, in order to maintain the business, the director of the bookstore decided to fired 
 -- some non manager staffs which were newly hired in 2020. Update and retrieve the list of these staffs who were fired.
