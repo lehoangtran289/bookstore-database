@@ -118,28 +118,28 @@ ORDER BY sales;
 
 -- 12. In the top 3 most favorite genres, retrieve top 4 books which were bought the most of each genre 
 SELECT * FROM (
-SELECT genre_detail_sales.book_id, genre_detail_sales.title, genre_detail_sales.genre, genre_detail_sales.sales, 
-RANK() OVER ( PARTITION BY genre_detail_sales.genre ORDER BY genre_detail_sales.sales DESC) AS 'rank'
-FROM (
-	SELECT b.book_id, b.title, g.genre, sum(od.quantity) 'sales'
-	FROM genre g, book b, order_detail od
-	WHERE g.book_id = b.book_id AND od.book_id = b.book_id
-	AND g.genre IN (
-		SELECT genre_sales_rank.genre FROM (	
-			SELECT genre_sales.*, DENSE_RANK() OVER (ORDER BY sales DESC) sales_rank
-			FROM (
-				SELECT g.genre, sum(od.quantity) 'sales'
-				FROM genre g, book b, order_detail od
-				WHERE g.book_id = b.book_id AND od.book_id = b.book_id
-				GROUP BY g.genre
-				ORDER BY sales DESC
-			) genre_sales
-		) genre_sales_rank
-		WHERE sales_rank <= 3
-	)
-	GROUP BY b.book_id, g.genre
-	ORDER BY g.genre, sales DESC
-) genre_detail_sales ) temp
+	SELECT genre_detail_sales.book_id, genre_detail_sales.title, genre_detail_sales.genre, genre_detail_sales.sales, 
+	DENSE_RANK() OVER ( PARTITION BY genre_detail_sales.genre ORDER BY genre_detail_sales.sales DESC) AS 'rank'
+	FROM (
+		SELECT b.book_id, b.title, g.genre, sum(od.quantity) 'sales'
+		FROM genre g, book b, order_detail od
+		WHERE g.book_id = b.book_id AND od.book_id = b.book_id
+		AND g.genre IN (
+			SELECT genre_sales_rank.genre FROM (	
+				SELECT genre_sales.*, DENSE_RANK() OVER (ORDER BY sales DESC) sales_rank
+				FROM (
+					SELECT g.genre, sum(od.quantity) 'sales'
+					FROM genre g, book b, order_detail od
+					WHERE g.book_id = b.book_id AND od.book_id = b.book_id
+					GROUP BY g.genre
+					ORDER BY sales DESC
+				) genre_sales
+			) genre_sales_rank
+			WHERE sales_rank <= 3
+		)
+		GROUP BY b.book_id, g.genre
+		ORDER BY g.genre, sales DESC
+	) genre_detail_sales ) temp
 WHERE temp.`rank` <= 4;
 
 -- 13. Retrieve the average revenue per months in 2019
