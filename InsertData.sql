@@ -145,7 +145,6 @@ INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (127, 'Prediction Machines: The Simple Economics of Artificial Intelligence', 335000, 47, 8);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (128, 'Introduction to Algorithms', 865000, 50, 9);
 INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (129, 'Head First Design Patterns', 943000, 49, 10);
-INSERT INTO bookstoredb.book (book_id, title, price, inventory_qty, publisher_id) VALUES (130, 'Domain-Driven Design: Tackling Complexity in the Heart of Software', 1150000, 52, 11);
 
 -- INSERT genre --------------
 INSERT INTO bookstoredb.genre (book_id, genre) VALUES (1, 'Action');
@@ -338,7 +337,6 @@ INSERT INTO bookstoredb.genre (book_id, genre) VALUES (127, 'Business');
 INSERT INTO bookstoredb.genre (book_id, genre) VALUES (127, 'Technical');
 INSERT INTO bookstoredb.genre (book_id, genre) VALUES (128, 'Technical');
 INSERT INTO bookstoredb.genre (book_id, genre) VALUES (129, 'Technical');
-INSERT INTO bookstoredb.genre (book_id, genre) VALUES (130, 'Technical');
 
 -- INSERT author --------------
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (1, 'Dan Brown', 'USA');
@@ -440,7 +438,6 @@ INSERT INTO bookstoredb.author (author_id, name, country) VALUES (96, 'Thomas H.
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (97, 'Charles E. Leiserson', 'Norway');
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (98, 'Eric Freeman', 'USA');
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (99, 'Kathy Sierra', 'USA');
-INSERT INTO bookstoredb.author (author_id, name, country) VALUES (100, 'Eric Evans', 'England');
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (101, 'David Crow', 'USA');
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (102, 'Julia Andrew', 'England');
 INSERT INTO bookstoredb.author (author_id, name, country) VALUES (103, 'Robert Atwan', 'USA');
@@ -583,7 +580,6 @@ INSERT INTO bookstoredb.author_detail (author_id, book_id) VALUES (96, 128);
 INSERT INTO bookstoredb.author_detail (author_id, book_id) VALUES (97, 128);
 INSERT INTO bookstoredb.author_detail (author_id, book_id) VALUES (98, 129);
 INSERT INTO bookstoredb.author_detail (author_id, book_id) VALUES (99, 129);
-INSERT INTO bookstoredb.author_detail (author_id, book_id) VALUES (100, 130);
 
 -- INSERT staff
 INSERT INTO bookstoredb.staff (staff_id, name, hire_date, end_date, dob, address, phone, email, password, position) VALUES (1, 'Kathryne Rosingdall', '2019-05-07', null, '1996-01-11', '5631 Fallview Way', '3403269895', 'krosingdall0@cmu.edu', 'NGANKyRV', 'manager');
@@ -981,6 +977,8 @@ INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (21, 4
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (21, 73, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 25, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 41, 2);
+INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 117, 3);
+INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 118, 10);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 43, 1);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 51, 1);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (22, 81, 2);
@@ -1098,6 +1096,8 @@ INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 6
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 75, 2);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 78, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 96, 1);
+INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 191, 8);
+INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (50, 183, 6);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (51, 36, 2);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (51, 78, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (53, 69, 2);
@@ -1179,6 +1179,7 @@ INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (74, 1
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (74, 173, 4);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (74, 199, 2);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (75, 103, 4);
+INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (75, 105, 19);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (75, 106, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (75, 122, 2);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (75, 130, 4);
@@ -1397,10 +1398,6 @@ INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (128, 
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (129, 121, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (129, 157, 3);
 INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (129, 182, 4);
-INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (130, 131, 1);
-INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (130, 150, 2);
-INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (130, 152, 4);
-INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (130, 153, 3);
-INSERT INTO bookstoredb.order_detail (book_id, order_id, quantity) VALUES (130, 197, 3);
+
 
 
