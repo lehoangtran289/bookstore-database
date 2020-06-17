@@ -6,11 +6,10 @@ ORDER BY order_date ASC;
 
 -- 2. infomation of customers who by more than 3 Fantasy books
 SELECT c.*
-FROM customer c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_detail od on o.order_id = od.order_id
-JOIN genre g on g.book_id = od.book_id
-WHERE g.genre = 'Fantasy'
+FROM customer c, orders o, order_detail od, genre g
+WHERE c.customer_id = o.customer_id AND c.customer_id = o.customer_id 
+AND o.order_id = od.order_id AND g.book_id = od.book_id
+AND g.genre = 'Fantasy'
 GROUP BY c.customer_id
 HAVING COUNT(*) >= 3;
 
@@ -19,7 +18,7 @@ SELECT b.title, sum(od.quantity) * b.price as 'total revenue'
 FROM order_detail od
 JOIN book b ON od.book_id = b.book_id
 JOIN orders o ON o.order_id = od.order_id
-WHERE o.order_date BETWEEN '2019/07/01' AND '2019/09/30'
+WHERE MONTH(o.order_date) IN (7, 8, 9)
 GROUP BY b.book_id
 HAVING `total revenue` >= ALL (
 	SELECT sum(od1.quantity) * b1.price
@@ -86,20 +85,13 @@ HAVING SUM(od.quantity) >= ALL (
 );
 
 
--- 9. discount 15% for books that unsold in last month
-UPDATE book
-SET price = price * 0.85
-WHERE book_id IN (
-	SELECT book_id
-	FROM book
-	WHERE book_id not in (
-		SELECT DISTINCT b.book_id
-		FROM order_detail od
-		JOIN book b ON od.book_id = b.book_id
-		JOIN orders o ON o.order_id = od.order_id
-		WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-	)
-);
+-- 9. quarter that have the largest revenue in 2019
+SELECT QUARTER(o.order_date) AS 'quarter', SUM(od.quantity * b.price) AS 'revenue'
+FROM orders o, order_detail od, book b
+WHERE o.order_id = od.order_id AND b.book_id = od.book_id AND YEAR(o.order_date) = 2019
+GROUP BY QUARTER(o.order_date) 
+ORDER BY `revenue` DESC
+LIMIT 1;
 
 -- 10. Procedure retrieve book in a price range
 DELIMITER $$
@@ -110,6 +102,7 @@ BEGIN
     WHERE price >= low AND price <= HIGH;
 END; $$
 DELIMITER ;
+CALL book_in_price_range(100000, 300000);
 
 -- 11. Create view which retrieves the list of all books and the amount of each book sold, sorts by the amount of sold books in descending order 
 CREATE VIEW book_sales_detail AS 
