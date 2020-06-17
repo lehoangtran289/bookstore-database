@@ -90,8 +90,12 @@ SELECT QUARTER(o.order_date) AS 'quarter', SUM(od.quantity * b.price) AS 'revenu
 FROM orders o, order_detail od, book b
 WHERE o.order_id = od.order_id AND b.book_id = od.book_id AND YEAR(o.order_date) = 2019
 GROUP BY QUARTER(o.order_date) 
-ORDER BY `revenue` DESC
-LIMIT 1;
+HAVING `revenue` >= ALL (
+	SELECT SUM(od1.quantity * b1.price)
+	FROM orders o1, order_detail od1, book b1
+	WHERE o1.order_id = od1.order_id AND b1.book_id = od1.book_id AND YEAR(o1.order_date) = 2019
+	GROUP BY QUARTER(o1.order_date) 
+);
 
 -- 10. Procedure retrieve book in a price range
 DELIMITER $$
