@@ -23,15 +23,17 @@ DROP TRIGGER IF EXISTS order_total_bill;
 DROP FUNCTION IF EXISTS book_count;
 DROP PROCEDURE IF EXISTS book_in_price_range;
 
+DROP VIEW IF EXISTS book_sales_detail;
+
 -- Create tables
 
-CREATE TABLE publisher (
+CREATE TABLE IF NOT EXISTS publisher (
 	publisher_id int PRIMARY KEY,
 	name nvarchar(200) NOT NULL,
 	address nvarchar(200)
 );
 
-CREATE TABLE book (
+CREATE TABLE IF NOT EXISTS book (
 	book_id int PRIMARY KEY,
 	title varchar(200) NOT NULL,
 	price int NOT NULL CHECK (price > 0),
@@ -40,13 +42,13 @@ CREATE TABLE book (
 	FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id)
 );
 
-CREATE TABLE author (
+CREATE TABLE IF NOT EXISTS author (
 	author_id int PRIMARY KEY,
 	name varchar(200) NOT NULL,
 	country varchar(50) NOT NULL
 );
 
-CREATE TABLE author_detail (
+CREATE TABLE IF NOT EXISTS author_detail (
 	author_id int,
 	book_id int,
 	PRIMARY KEY (author_id, book_id),
@@ -54,14 +56,14 @@ CREATE TABLE author_detail (
 	FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
 
-CREATE TABLE genre (
+CREATE TABLE IF NOT EXISTS genre (
 	book_id int,
 	genre varchar(200),
 	PRIMARY KEY (book_id, genre),
 	FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
 
-CREATE TABLE customer (
+CREATE TABLE IF NOT EXISTS customer (
 	customer_id int PRIMARY KEY,
 	name varchar(200) NOT NULL,
 	address varchar(200),
@@ -69,7 +71,7 @@ CREATE TABLE customer (
 	email varchar(200)
 );
 
-CREATE TABLE staff (
+CREATE TABLE IF NOT EXISTS staff (
 	staff_id int PRIMARY KEY,
 	name varchar(200) NOT NULL,
 	hire_date date NOT NULL,
@@ -82,7 +84,7 @@ CREATE TABLE staff (
 	`position` varchar(200) NOT NULL
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
 	order_id int PRIMARY KEY,
 	customer_id int NOT NULL,
 	staff_id int NOT NULL,
@@ -92,7 +94,7 @@ CREATE TABLE orders (
 	FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 );
 
-CREATE TABLE order_detail (
+CREATE TABLE IF NOT EXISTS order_detail (
 	book_id int,
 	order_id int,
 	quantity int NOT NULL CHECK (quantity >= 0),
@@ -101,6 +103,12 @@ CREATE TABLE order_detail (
 	FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
+CREATE INDEX book_id ON author_detail (book_id);
+CREATE INDEX publisher_id ON book (publisher_id);
+CREATE INDEX order_id ON order_detail (order_id);
+CREATE INDEX customer_id ON orders (customer_id);
+CREATE INDEX staff_id ON orders (staff_id);
+
 -- Create triger
 -- Update the number of book in table book when books are bought
 CREATE TRIGGER update_book_quantity BEFORE INSERT ON order_detail
@@ -108,7 +116,6 @@ FOR EACH ROW
 	UPDATE book 
 	SET inventory_qty = inventory_qty - NEW.quantity
 	WHERE book_id = NEW.book_id;
-
 
 -- Update table orders to get the total_bill of an order when books are added into order
 CREATE TRIGGER order_total_bill BEFORE INSERT ON order_detail
@@ -124,10 +131,8 @@ FOR EACH ROW
 -- Create function & Procedure
 -- Function to get the number of books published by 1 publisher
 DELIMITER $$
-
 CREATE FUNCTION book_count(publisherID INT) RETURNS INT
-LANGUAGE SQL
-DETERMINISTIC
+LANGUAGE SQL DETERMINISTIC
 BEGIN
 	DECLARE number_of_book INT;
 	SELECT COUNT(book_id) 
@@ -137,7 +142,6 @@ BEGIN
 	GROUP BY publisher_id;
 	RETURN number_of_book;
 END $$
-
 DELIMITER ;
 
 -- Procedure retrieve book in a price range
@@ -146,7 +150,9 @@ CREATE PROCEDURE book_in_price_range(IN low int, IN high int)
 BEGIN
 	SELECT book.*
     FROM book
-    WHERE price >= low AND price <= HIGH;
+    WHERE price >= low AND price <= HIGH
+    ORDER BY price;
 END; $$
 DELIMITER ;
+
 
