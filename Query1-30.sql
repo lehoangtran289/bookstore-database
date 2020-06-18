@@ -110,7 +110,8 @@ CALL book_in_price_range(100000, 300000);
 
 -- 11. Create view which retrieves the list of all books and the amount of each book sold, sorts by the amount of sold books in descending order 
 CREATE VIEW book_sales_detail AS 
-SELECT b.book_id 'book id', b.title 'book title', b.price, b.inventory_qty 'inventory qty', p.name 'publisher', COALESCE(sum(od.quantity), 0) 'sales' 
+SELECT b.book_id 'book id', b.title 'book title', b.price, b.inventory_qty 'inventory qty', 
+	p.name 'publisher', COALESCE(sum(od.quantity), 0) 'sales' 
 FROM book b LEFT JOIN order_detail od ON b.book_id = od.book_id, publisher p
 WHERE p.publisher_id = b.publisher_id
 GROUP BY b.book_id
@@ -177,8 +178,7 @@ SELECT * FROM (
 WHERE salesinfo_withrank.sales_rank <= 7;
 
 -- 16. Retrieve information of customer(s) who bought more than 3 times, the total number of books they bought, 
--- and the minimum time gap between their 2 consecutive orders  
-
+-- and the minimum time interval between their 2 consecutive orders  
 SELECT tt.customer_id, tt.name, sum(tt.books) 'total books', min(datediff(tt.order_date, tt.prev_order)) 'min interval (days)'
 FROM (
 	SELECT c.customer_id, c.name, o.order_id, sum(od.quantity) 'books', o.order_date, 
@@ -207,23 +207,26 @@ AND o.total_bill >= ALL (
 -- 18. Retrieve information of customers who bought both "Adventure", "Mystery" and "Action" books 
 SELECT DISTINCT c.*
 FROM genre g, book b, order_detail od, orders o, customer c
-WHERE g.book_id = b.book_id AND b.book_id = od.book_id AND od.order_id = o.order_id AND o.customer_id = c.customer_id
+WHERE g.book_id = b.book_id AND b.book_id = od.book_id 
+AND od.order_id = o.order_id AND o.customer_id = c.customer_id
 AND g.genre = 'Adventure'
 AND c.customer_id IN (
 	SELECT c1.customer_id
 	FROM genre g1, book b1, order_detail od1, orders o1, customer c1
-	WHERE g1.book_id = b1.book_id AND b1.book_id = od1.book_id AND od1.order_id = o1.order_id AND o1.customer_id = c1.customer_id
+	WHERE g1.book_id = b1.book_id AND b1.book_id = od1.book_id 
+	AND od1.order_id = o1.order_id AND o1.customer_id = c1.customer_id
 	AND g1.genre = 'Action'
 )
 AND c.customer_id IN (
 	SELECT c2.customer_id
 	FROM genre g2, book b2, order_detail od2, orders o2, customer c2
-	WHERE g2.book_id = b2.book_id AND b2.book_id = od2.book_id AND od2.order_id = o2.order_id AND o2.customer_id = c2.customer_id
+	WHERE g2.book_id = b2.book_id AND b2.book_id = od2.book_id 
+	AND od2.order_id = o2.order_id AND o2.customer_id = c2.customer_id
 	AND g2.genre = 'Mystery'
 );
 
 -- 19. Retrieve information of the publisher(s) selling all books written by 'George R. R. Martin'
-SELECT p.publisher_id, p.name, p.address
+SELECT p.publisher_id, p.name 'Publisher', p.address
 FROM publisher p, author a, book b, author_detail ad
 WHERE p.publisher_id = b.publisher_id AND b.book_id = ad.book_id AND ad.author_id = a.author_id
 AND a.name = 'George R. R. Martin'
@@ -262,15 +265,6 @@ FOR EACH ROW
 	WHERE order_id = NEW.order_id;
 
 -- 23. Retrieve the name of exactly 2 publishers publishing the most number of books
-SELECT p.name
-FROM publisher AS p, (
-	SELECT publisher_id, SUM(inventory_qty) 
-	FROM book 
-	GROUP BY publisher_id 
-	ORDER BY SUM(inventory_qty) DESC 
-	LIMIT 2) AS p1
-WHERE p.publisher_id = p1.publisher_id;
-
 SELECT p.name, sum(inventory_qty) AS '# books sales'
 FROM book b, publisher p
 WHERE b.publisher_id = p.publisher_id
@@ -302,7 +296,8 @@ SELECT s.name, s.hire_date, SUM(od.quantity) AS book_sold
 FROM staff s, orders o, order_detail od
 WHERE s.staff_id = o.staff_id AND o.order_id = od.order_id
 AND (DATEDIFF(now(), s.hire_date)/365) < 1
-GROUP BY s.name;
+GROUP BY s.staff_id
+ORDER BY book_sold DESC;
 	
 -- 26. Retrieve the titles, authors of books written by American and English authors, 
 -- whose books were published by more than or equal 3 publishers
