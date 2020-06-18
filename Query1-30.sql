@@ -1,10 +1,10 @@
--- 1. Retrieve total revenue of books by days 
-SELECT order_date date, sum(total_bill) AS `total revenue`
+-- 1. total revenue by day 
+SELECT order_date date, sum(total_bill)
 FROM orders
 GROUP BY order_date
 ORDER BY order_date ASC;
 
--- 2. Retrieve infomation of customers who bought more than 3 Fantasy books
+-- 2. infomation of customers who by more than 3 Fantasy books
 SELECT c.*
 FROM customer c, orders o, order_detail od, genre g
 WHERE c.customer_id = o.customer_id AND c.customer_id = o.customer_id 
@@ -13,59 +13,61 @@ AND g.genre = 'Fantasy'
 GROUP BY c.customer_id
 HAVING COUNT(*) >= 3;
 
--- 3. Retrieve the best seller in the third quarter of 2019
-SELECT b.title, sum(od.quantity) * b.price as 'total revenue'
-FROM order_detail od
-JOIN book b ON od.book_id = b.book_id
-JOIN orders o ON o.order_id = od.order_id
-WHERE MONTH(o.order_date) IN (7, 8, 9)
-GROUP BY b.book_id
-HAVING `total revenue` >= ALL (
-	SELECT sum(od1.quantity) * b1.price
-	FROM order_detail od1
-	JOIN book b1 ON od1.book_id = b1.book_id
-	JOIN orders o1 ON o1.order_id = od1.order_id
-	WHERE o1.order_date BETWEEN '2019/07/01' AND '2019/09/30'
-	GROUP BY b1.book_id
+-- 3. author that co-operate with only one publisher
+SELECT DISTINCT a.name 'author', p.name 'publisher'
+FROM author a, author_detail ad, book b, publisher p
+WHERE a.author_id = ad.author_id AND ad.book_id = b.book_id AND p.publisher_id = b.publisher_id
+AND 1 = (
+	SELECT COUNT(DISTINCT b1.publisher_id)
+    FROM author a1, author_detail ad1, book b1
+    WHERE a1.author_id = ad1.author_id AND ad1.book_id = b1.book_id
+    AND a1.author_id = a.author_id
 );
 
--- 4. Retrieve unsold books in the past 6 months
-SELECT title
-FROM book
-WHERE title not in (
-	SELECT DISTINCT b.title
+-- 4. unsold book in the past 6 month and its last sold date (null if that book is unsold)
+SELECT b.title, last_sold.date AS 'last sold', b.book_id
+FROM (
+	SELECT MAX(o.order_date) 'date', od.book_id
+	FROM orders o, order_detail od
+	WHERE o.order_id = od.order_id
+	GROUP BY od.book_id
+) last_sold 
+RIGHT JOIN book b ON b.book_id = last_sold.book_id
+WHERE b.title not in (
+	SELECT DISTINCT b1.title
 	FROM order_detail od
-	JOIN book b ON od.book_id = b.book_id
+	JOIN book b1 ON od.book_id = b1.book_id
 	JOIN orders o ON o.order_id = od.order_id
 	WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 180 DAY)
 );
 
--- 5. Retrieve all customers who spent more than 2000000 in 2020
+-- 5. customer who spent more than 2000000 in 2020, descending order
 SELECT c.*, sum(o.total_bill) AS 'total spending'
 FROM customer c 
 JOIN orders o ON o.customer_id = c.customer_id
 WHERE YEAR(o.order_date) = 2020
 GROUP BY c.customer_id
-HAVING SUM(o.total_bill) > 2000000;
+HAVING SUM(o.total_bill) > 2000000 
+ORDER BY SUM(o.total_bill) DESC;
 
--- 6. Retrieve all books written by J.K Rowling
+-- 6. all books written by J.K Rowling
 SELECT b.title
 FROM book b
 JOIN author_detail ad ON ad.book_id = b.book_id
 JOIN author a ON a.author_id = ad.author_id
 WHERE a.name = 'J. K. Rowling';
 
---  7. Retrieve books that have amount in stock smaller than 3 books and were sold more than 10 copies in last 3 month
-SELECT b.*, SUM(od.quantity) AS 'Copies sold in last 6 month'
+--  7. books that have amount in stock smaller than 3 and have sold more than 10 copies in last 3 month
+SELECT b.*, SUM(od.quantity) AS 'Copies sold in last 3 month'
 FROM book b
 JOIN order_detail od ON b.book_id = od.book_id
 JOIN orders o ON o.order_id = od.order_id
-WHERE b.inventory_qty < 3 AND o.order_date >= DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+WHERE b.inventory_qty < 3 AND o.order_date >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
 GROUP BY b.book_id
 HAVING SUM(od.quantity) > 10;
 
 --  8. Retrieve the best seller in top 3 publisher having most books sold
-SELECT b.title 'book title', p.name 'publisher name', SUM(od.quantity)
+SELECT b.title 'book title', p.name 'publisher name', SUM(od.quantity) 'amount sold'
 FROM book b, order_detail od, (
 	SELECT publisher.*
     FROM publisher
@@ -85,17 +87,12 @@ HAVING SUM(od.quantity) >= ALL (
 );
 
 
--- 9. quarter that have the largest revenue in 2019
+-- 9. 2019 quarter revenue in descending order
 SELECT QUARTER(o.order_date) AS 'quarter', SUM(od.quantity * b.price) AS 'revenue'
 FROM orders o, order_detail od, book b
 WHERE o.order_id = od.order_id AND b.book_id = od.book_id AND YEAR(o.order_date) = 2019
 GROUP BY QUARTER(o.order_date) 
-HAVING `revenue` >= ALL (
-	SELECT SUM(od1.quantity * b1.price)
-	FROM orders o1, order_detail od1, book b1
-	WHERE o1.order_id = od1.order_id AND b1.book_id = od1.book_id AND YEAR(o1.order_date) = 2019
-	GROUP BY QUARTER(o1.order_date) 
-);
+ORDER BY SUM(od.quantity * b.price) DESC;
 
 -- 10. Procedure retrieve book in a price range
 DELIMITER $$
@@ -103,7 +100,8 @@ CREATE PROCEDURE book_in_price_range(IN low int, IN high int)
 BEGIN
 	SELECT book.*
     FROM book
-    WHERE price >= low AND price <= HIGH;
+    WHERE price >= low AND price <= HIGH
+    ORDER BY price;
 END; $$
 DELIMITER ;
 CALL book_in_price_range(100000, 300000);
@@ -281,17 +279,6 @@ AND ad.author_id = a.author_id
 AND p.name LIKE N'%Lao Động%';
 
 -- 25. Retrieve the name, hire date and the number of books sold by staffs who have been working less than 1 year
-SELECT s.name, s.hire_date, SUM(books_in_order.total_book) AS book_sold
-FROM staff s, orders o, (
-	SELECT SUM(quantity) AS total_book, order_id
-	FROM order_detail
-	GROUP BY order_id
-	) AS books_in_order
-WHERE s.staff_id = o.staff_id
-AND o.order_id = books_in_order.order_id
-AND (DATEDIFF(now(), s.hire_date)/365) < 1
-GROUP BY s.staff_id;
-
 SELECT s.name, s.hire_date, SUM(od.quantity) AS book_sold
 FROM staff s, orders o, order_detail od
 WHERE s.staff_id = o.staff_id AND o.order_id = od.order_id
