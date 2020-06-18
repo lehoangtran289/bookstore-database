@@ -1,10 +1,10 @@
--- 1. total revenue by day 
-SELECT order_date date, sum(total_bill)
+-- 1. Retrieve total revenue of books by days 
+SELECT order_date date, sum(total_bill) AS `total revenue`
 FROM orders
 GROUP BY order_date
 ORDER BY order_date ASC;
 
--- 2. infomation of customers who by more than 3 Fantasy books
+-- 2. Retrieve infomation of customers who bought more than 3 Fantasy books
 SELECT c.*
 FROM customer c, orders o, order_detail od, genre g
 WHERE c.customer_id = o.customer_id AND c.customer_id = o.customer_id 
@@ -13,7 +13,7 @@ AND g.genre = 'Fantasy'
 GROUP BY c.customer_id
 HAVING COUNT(*) >= 3;
 
--- 3. author that co-operate with only one publisher
+-- 3. Retrieve author(s) that co-operate with only one publisher
 SELECT DISTINCT a.name 'author', p.name 'publisher'
 FROM author a, author_detail ad, book b, publisher p
 WHERE a.author_id = ad.author_id AND ad.book_id = b.book_id AND p.publisher_id = b.publisher_id
@@ -24,7 +24,7 @@ AND 1 = (
     AND a1.author_id = a.author_id
 );
 
--- 4. unsold book in the past 6 month and its last sold date (null if that book is unsold)
+-- 4. Retrieve unsold books in the past 6 month and its last sold date (null if that book is unsold)
 SELECT b.title, last_sold.date AS 'last sold', b.book_id
 FROM (
 	SELECT MAX(o.order_date) 'date', od.book_id
@@ -41,7 +41,7 @@ WHERE b.title not in (
 	WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 180 DAY)
 );
 
--- 5. customer who spent more than 2000000 in 2020, descending order
+-- 5. Retrieve information of customers who spent more than 2000000 in 2020, sort in descending order
 SELECT c.*, sum(o.total_bill) AS 'total spending'
 FROM customer c 
 JOIN orders o ON o.customer_id = c.customer_id
@@ -50,14 +50,14 @@ GROUP BY c.customer_id
 HAVING SUM(o.total_bill) > 2000000 
 ORDER BY SUM(o.total_bill) DESC;
 
--- 6. all books written by J.K Rowling
+-- 6. Retrieve all books written by J.K Rowling
 SELECT b.title
 FROM book b
 JOIN author_detail ad ON ad.book_id = b.book_id
 JOIN author a ON a.author_id = ad.author_id
 WHERE a.name = 'J. K. Rowling';
 
---  7. books that have amount in stock smaller than 3 and have sold more than 10 copies in last 3 month
+--  7. Retrieve books that have amount in stock smaller than 3 books and were sold more than 10 copies in last 3 month
 SELECT b.*, SUM(od.quantity) AS 'Copies sold in last 3 month'
 FROM book b
 JOIN order_detail od ON b.book_id = od.book_id
@@ -86,15 +86,14 @@ HAVING SUM(od.quantity) >= ALL (
     GROUP BY b1.book_id
 );
 
-
--- 9. 2019 quarter revenue in descending order
+-- 9. Retrieve the 2019 quarter revenue in descending order
 SELECT QUARTER(o.order_date) AS 'quarter', SUM(od.quantity * b.price) AS 'revenue'
 FROM orders o, order_detail od, book b
 WHERE o.order_id = od.order_id AND b.book_id = od.book_id AND YEAR(o.order_date) = 2019
 GROUP BY QUARTER(o.order_date) 
 ORDER BY SUM(od.quantity * b.price) DESC;
 
--- 10. Procedure retrieve book in a price range
+-- 10. Create procedure to retrieve books in a price range
 DELIMITER $$
 CREATE PROCEDURE book_in_price_range(IN low int, IN high int)
 BEGIN
@@ -106,7 +105,8 @@ END; $$
 DELIMITER ;
 CALL book_in_price_range(100000, 300000);
 
--- 11. Create view which retrieves the list of all books and the amount of each book sold, sorts by the amount of sold books in descending order 
+-- 11. Create view which retrieves the list of all books and the amount of each book sold, 
+-- sorts by the amount of sold books in descending order 
 CREATE VIEW book_sales_detail AS 
 SELECT b.book_id 'book id', b.title 'book title', b.price, b.inventory_qty 'inventory qty', 
 	p.name 'publisher', COALESCE(sum(od.quantity), 0) 'sales' 
@@ -150,7 +150,7 @@ WHERE YEAR(o.order_date) = 2019
 GROUP BY MONTH(o.order_date)
 ORDER BY MONTH(o.order_date);
 
--- 14. Retrieve information of the customer who bought the most number of books 
+-- 14. Retrieve information of the customer who bought the most number of books and that amount of books 
 SELECT c.*, sum(od.quantity) 'book amount'
 FROM orders o, customer c, order_detail od
 WHERE o.order_id = od.order_id AND c.customer_id = o.customer_id
