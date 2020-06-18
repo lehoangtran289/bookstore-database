@@ -73,7 +73,7 @@ FROM book b, order_detail od, (
     FROM publisher
     JOIN book ON publisher.publisher_id = book.publisher_id
     JOIN order_detail ON order_detail.book_id = book.book_id
-    GROUP BY book.book_id, book.publisher_id
+    GROUP BY book.publisher_id
     ORDER BY SUM(order_detail.quantity) DESC
     LIMIT 3
 ) p
