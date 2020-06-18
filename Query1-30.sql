@@ -176,19 +176,23 @@ SELECT * FROM (
 ) salesinfo_withrank
 WHERE salesinfo_withrank.sales_rank <= 7;
 
--- 16. Retrieve information of the cashier which has the lowest sales revenue in total
-SELECT s.*, sum(o.total_bill) 'revenue'
-FROM orders o, staff s
-WHERE o.staff_id = s.staff_id
-GROUP BY s.staff_id
-HAVING revenue <= ALL (
-	SELECT sum(o1.total_bill)
-	FROM orders o1, staff s1
-	WHERE o1.staff_id = s1.staff_id
-	GROUP BY s1.staff_id
-);
+-- 16. Retrieve information of customer(s) who bought more than 3 times, the total number of books they bought, 
+-- and the minimum time gap between their 2 consecutive orders  
 
--- 17. Retrieve information of the order which has the highest total bill in 2019 and the cashier that was in charge of that order
+SELECT tt.customer_id, tt.name, sum(tt.books) 'total books', min(datediff(tt.order_date, tt.prev_order)) 'min interval (days)'
+FROM (
+	SELECT c.customer_id, c.name, o.order_id, sum(od.quantity) 'books', o.order_date, 
+		lag(order_date, 1) OVER (PARTITION BY customer_id ORDER BY customer_id, order_date) AS 'prev_order'
+	FROM customer c, order_detail od, orders o
+	WHERE o.customer_id = c.customer_id AND o.order_id = od.order_id 
+	AND 3 < (SELECT count(*) FROM orders o1 
+			WHERE o1.customer_id = c.customer_id)
+	GROUP BY customer_id, order_id
+) tt
+GROUP BY tt.customer_id;
+
+-- 17. Retrieve information of the order which has the highest total bill in 2019 
+-- and the cashier that was in charge of that order
 SELECT o.order_id, o.order_date, o.total_bill, s.name 'cashier name', s.dob, s.phone, s.email
 FROM orders o, staff s
 WHERE o.staff_id = s.staff_id
