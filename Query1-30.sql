@@ -7,11 +7,11 @@ ORDER BY order_date ASC;
 -- 2. Retrieve infomation of customers who bought more than 3 Fantasy books
 SELECT c.*
 FROM customer c, orders o, order_detail od, genre g
-WHERE c.customer_id = o.customer_id AND c.customer_id = o.customer_id 
+WHERE c.customer_id = o.customer_id 
 AND o.order_id = od.order_id AND g.book_id = od.book_id
 AND g.genre = 'Fantasy'
 GROUP BY c.customer_id
-HAVING COUNT(*) >= 3;
+HAVING COUNT(*) > 3;
 
 -- 3. Retrieve author(s) that co-operate with only one publisher
 SELECT DISTINCT a.name 'author', p.name 'publisher'
