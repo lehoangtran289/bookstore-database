@@ -105,7 +105,7 @@ END; $$
 DELIMITER ;
 CALL book_in_price_range(100000, 300000);
 
--- 11. Create view which retrieves the list of all books and the amount of each book sold, 
+-- 11. Create view which retrieves the list of all books, its publisher, and the amount of each book sold, 
 -- sorts by the amount of sold books in descending order 
 CREATE VIEW book_sales_detail AS 
 SELECT b.book_id 'book id', b.title 'book title', b.price, b.inventory_qty 'inventory qty', 
@@ -263,11 +263,11 @@ FOR EACH ROW
 	WHERE order_id = NEW.order_id;
 
 -- 23. Retrieve the name of exactly 2 publishers publishing the most number of books
-SELECT p.name, sum(inventory_qty) AS '# books sales'
+SELECT p.name, count(b.book_id) AS '# published books'
 FROM book b, publisher p
 WHERE b.publisher_id = p.publisher_id
 GROUP BY p.publisher_id 
-ORDER BY SUM(inventory_qty) DESC 
+ORDER BY count(b.book_id) DESC 
 LIMIT 2;
 
 -- 24. Retrieve the information of all the authors whose books published by publisher 'Lao Động' 
