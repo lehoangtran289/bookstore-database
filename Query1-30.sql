@@ -286,7 +286,7 @@ AND (DATEDIFF(now(), s.hire_date)/365) < 1
 GROUP BY s.staff_id
 ORDER BY book_sold DESC;
 	
--- 26. Retrieve the titles, authors of books written by American and English authors, 
+-- 26. Retrieve the titles, authors of books written by American or English authors, 
 -- whose books were published by more than or equal 3 publishers
 SELECT b.title 'Books', a.name
 FROM book b, author_detail ad, author a
@@ -326,7 +326,7 @@ AND o.order_id = od.order_id
 AND od.book_id = b.book_id
 AND b.book_id = g.book_id
 GROUP BY c.customer_id
-HAVING COUNT(DISTINCT g.genre) <= 1;
+HAVING COUNT(DISTINCT g.genre) = 1;
 
 -- 29. Retrieve the title and price of books whose price is greater than the sum of 5 books that are the cheapest
 SELECT b.title, b.price
