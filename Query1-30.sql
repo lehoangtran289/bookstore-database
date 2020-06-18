@@ -342,6 +342,18 @@ AND b.book_id = g.book_id
 GROUP BY c.customer_id
 HAVING COUNT(DISTINCT g.genre) <= 1;
 
+-- 29. Retrieve the title and price of books whose price is greater than the sum of 5 books that are the cheapest
+SELECT b.title, b.price
+FROM book AS b 
+WHERE b.price > (
+	SELECT SUM(cheapest.price)
+	FROM (
+	SELECT price 
+	FROM book
+	ORDER BY price 
+	LIMIT 5) AS cheapest
+); 
+
 -- 29. Retrieve the name of authors who wrote the least number of books among all British authors
 SELECT a.name AS Authors
 FROM author AS a, author_detail AS ad
