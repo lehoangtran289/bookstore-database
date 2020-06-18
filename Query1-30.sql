@@ -352,25 +352,11 @@ FROM book AS b
 WHERE b.price > (
 	SELECT SUM(cheapest.price)
 	FROM (
-	SELECT price 
-	FROM book
-	ORDER BY price 
-	LIMIT 5) AS cheapest
+		SELECT price 
+		FROM book
+		ORDER BY price 
+		LIMIT 5) AS cheapest
 ); 
-
--- 29. Retrieve the name of authors who wrote the least number of books among all British authors
-SELECT a.name AS Authors
-FROM author AS a, author_detail AS ad
-WHERE a.author_id = ad.author_id
-AND a.country = 'England'
-GROUP BY a.author_id
-HAVING COUNT(ad.book_id) <= ALL (
-	SELECT COUNT(ad.book_id)
-	FROM author_detail AS ad, author AS a
-	WHERE ad.author_id = a.author_id
-	AND a.country = 'England'
-	GROUP BY a.author_id
-);
 
 -- 30. Retrieve the name and phone number of customers who used to buy at least 1 book written by author 'J. K. Rowling' 
 -- and the total number of books he/she's already bought till now is less than 5
