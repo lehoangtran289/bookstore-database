@@ -60,7 +60,12 @@ CREATE TABLE IF NOT EXISTS genre (
 	book_id int,
 	genre varchar(200),
 	PRIMARY KEY (book_id, genre),
-	FOREIGN KEY (book_id) REFERENCES book(book_id)
+	FOREIGN KEY (book_id) REFERENCES book(book_id),
+	CHECK (genre = 'Adventure' OR genre = 'Action' OR genre = 'Biographic'
+			OR genre = 'Business' OR genre = 'Classics' OR genre = 'Comic'
+			OR genre = 'Essay' OR genre = 'Fantasy' OR genre = 'History'
+			OR genre = 'Horror' OR genre = 'Mystery' OR genre = 'Poetry'
+			OR genre = 'Romance' OR genre = 'Self-help' OR genre = 'Technical')
 );
 
 CREATE TABLE IF NOT EXISTS customer (

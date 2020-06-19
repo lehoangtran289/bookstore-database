@@ -133,13 +133,11 @@ SELECT * FROM (
 					FROM genre g, book b, order_detail od
 					WHERE g.book_id = b.book_id AND od.book_id = b.book_id
 					GROUP BY g.genre
-					ORDER BY sales DESC
 				) genre_sales
 			) genre_sales_rank
 			WHERE sales_rank <= 3
 		)
 		GROUP BY b.book_id, g.genre
-		ORDER BY g.genre, sales DESC
 	) genre_detail_sales ) temp
 WHERE temp.`rank` <= 4;
 
